@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cahier des Charges Global - Info 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f6f7;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        ul {
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .important {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cahier des Charges Global : Système d'Information Intégré & BI<br><small>(Organisme "Info 1")</small></h1>
+
+        <h2>1. Contexte et Objectifs du Projet</h2>
+        <p>L'organisme "Info 1" souhaite moderniser et digitaliser la gestion de ses 6 départements clés. L'objectif est double :</p>
+        <ul>
+            <li><strong>Opérationnel :</strong> Fournir à chaque département une application web sur-mesure pour gérer ses activités quotidiennes.</li>
+            <li><strong>Stratégique (Data) :</strong> Permettre aux responsables de chaque département d'analyser leurs propres données, et fournir à la Direction Générale (le "Chef") une vue consolidée et globale de l'organisme via des tableaux de bord interactifs.</li>
+        </ul>
+
+        <h2>2. Architecture Globale du Système</h2>
+        <p>Le système repose sur une architecture décentralisée pour la collecte des données et centralisée pour l'analyse décisionnelle.</p>
+        <ul>
+            <li><strong>Couche Opérationnelle (Web) :</strong> 6 applications web indépendantes, développées et gérées par 6 équipes distinctes.</li>
+            <li><strong>Couche Persistance (Bases de données) :</strong> Utilisation délibérée de bases de données hétérogènes (MySQL, PostgreSQL, MongoDB) selon les besoins structurels de chaque département pour simuler un environnement d'entreprise réaliste.</li>
+            <li><strong>Couche Analytique Locale (Département) :</strong> Une instance Metabase connectée à la base de données de chaque application pour les besoins analytiques spécifiques du département.</li>
+            <li><strong>Couche Décisionnelle Globale (Direction) :</strong> Une instance Metabase centrale, connectée simultanément aux 6 bases de données, permettant de croiser les informations.</li>
+        </ul>
+
+        <h2>3. Répartition des Équipes et Domaines</h2>
+        <p>Le projet est divisé entre 6 groupes de 6 personnes. Chaque groupe est totalement responsable du cycle de vie de son application (conception, développement, déploiement, analyse).</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Groupe</th>
+                    <th>Département ciblé</th>
+                    <th>Piste de Base de Données Suggérée</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Groupe 1</strong></td>
+                    <td><strong>Ressources Humaines (RH)</strong></td>
+                    <td>PostgreSQL (Idéal pour les données relationnelles)</td>
+                </tr>
+                <tr>
+                    <td><strong>Groupe 2</strong></td>
+                    <td><strong>Instruction</strong> (Notes, Examens)</td>
+                    <td>PostgreSQL ou MySQL</td>
+                </tr>
+                <tr>
+                    <td><strong>Groupe 3</strong></td>
+                    <td><strong>Restauration</strong> (Menus, Caisses)</td>
+                    <td>MongoDB ou MySQL (Système autonome)</td>
+                </tr>
+                <tr>
+                    <td><strong>Groupe 4</strong></td>
+                    <td><strong>Trésorerie</strong> (Budget, Flux)</td>
+                    <td>MySQL (Robuste pour les transactions financières)</td>
+                </tr>
+                <tr>
+                    <td><strong>Groupe 5</strong></td>
+                    <td><strong>Matériel</strong> (Inventaire, Prêts)</td>
+                    <td>MongoDB ou MySQL</td>
+                </tr>
+                <tr>
+                    <td><strong>Groupe 6</strong></td>
+                    <td><strong>Gestion de Courrier</strong> (Entrant/Sortant)</td>
+                    <td>MongoDB (Stockage orienté document pertinent)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Spécifications Techniques Globales</h2>
+        <p>Pour assurer la cohérence et la réussite de la phase d'intégration finale, toutes les équipes doivent respecter les standards suivants :</p>
+        
+        <h3>4.1. Développement Web</h3>
+        <ul>
+            <li><strong>Stack Technologique :</strong> Le choix du langage Frontend et Backend est libre pour chaque équipe.</li>
+            <li><strong>Gestion de Version :</strong> L'utilisation de <strong>Git</strong> est strictement obligatoire (avec utilisation de branches dédiées par fonctionnalité).</li>
+        </ul>
+
+        <h3>4.2. Bases de Données & Data Ingénierie</h3>
+        <ul>
+            <li><strong>Modélisation :</strong> Chaque groupe doit produire un dictionnaire de données et un schéma de base de données clair.</li>
+            <li><strong>Gouvernance des Données :</strong> Standardisation des clés primaires. <span class="important">L'identifiant "Matricule" doit avoir un format commun entre les groupes pour permettre les futures jointures sur la BI globale.</span></li>
+            <li><strong>Peuplement (Mock Data) :</strong> Chaque groupe doit concevoir un script pour générer un jeu de données fictives volumineux afin de rendre la data analyse pertinente.</li>
+        </ul>
+
+        <h2>5. Volet Data Analyst & Business Intelligence (Metabase)</h2>
+        <p>La valorisation de la donnée est le cœur de ce projet d'ingénierie.</p>
+        <ul>
+            <li><strong>Niveau 1 : Tableaux de bord locaux (par groupe)</strong>
+                <br>Chaque application doit comporter des KPIs spécifiques à son domaine (ex: Taux d'absentéisme pour les RH).</li>
+            <li><strong>Niveau 2 : Le Tableau de bord "Chef" (Global)</strong>
+                <br>Connexion de l'instance Metabase "Direction" aux 6 bases. Création de KPIs transverses (ex: Croiser le budget alloué par la Trésorerie avec les dépenses du département Matériel).</li>
+        </ul>
+
+        <h2>6. Livrables Attendus (Sprint de 16h)</h2>
+        <div class="highlight">
+            À la fin du projet (4 séances de 4h), chaque groupe devra fournir :
+            <ol>
+                <li>Le lien du dépôt Git avec l'historique complet de l'équipe.</li>
+                <li>Le script de création et de peuplement massif de la base de données.</li>
+                <li>L'application Web fonctionnelle permettant la saisie rapide des données.</li>
+                <li>Le tableau de bord Metabase local exporté.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
